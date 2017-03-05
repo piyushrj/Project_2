@@ -109,7 +109,7 @@ class my50
             $query = preg_replace($patterns, $replacements, $sql, 1);//replace the placeholders
             
             $result=mysqli_query($con,$query);//perform the query
-            if(!$result)
+            if(false===$result)
             {
                 trigger_error("Error in query",E_USER_ERROR);
             }
