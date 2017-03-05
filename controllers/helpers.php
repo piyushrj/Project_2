@@ -1,13 +1,6 @@
 <?php
 
-    /**
-     * helpers.php
-     *
-     * Computer Science 50
-     * Problem Set 7
-     *
-     * Helper functions.
-     */
+    
 
     require_once("config.php");
 
