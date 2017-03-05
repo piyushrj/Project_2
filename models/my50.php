@@ -104,7 +104,7 @@ class my50
             for ($i = 0, $n = count($parameters); $i < $n; $i++)
             {
                 array_push($patterns, $pattern);
-                array_push($replacements, preg_quote(mysqli_escape_string($parameters[$i])));
+                array_push($replacements, preg_quote(mysqli_real_escape_string($parameters[$i])));
             }
             $query = preg_replace($patterns, $replacements, $sql, 1);//replace the placeholders
             

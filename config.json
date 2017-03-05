@@ -1,7 +1,7 @@
 {
     "database": {
         "host": "localhost",
-        "name": "tes1",
+        "name": "test1",
         "username": "root",
         "password": "piy@mysql"
     }
