@@ -61,12 +61,12 @@ class my50
             $parameters = array_slice(func_get_args(), 1);
 
             // try to connect to database
-            static $connection;
-            if(!isset($connection))
+            static $con;
+            if(!isset($conncet))
             {
                 try
                 {
-                    $connection=mysqli_connect(self::$config["database"]["host"],
+                    $con=mysqli_connect(self::$config["database"]["host"],
                         self::$config["database"]["username"],
                         self::$config["database"]["password"],self::$config["database"]["name"]);
                     
@@ -104,11 +104,11 @@ class my50
             for ($i = 0, $n = count($parameters); $i < $n; $i++)
             {
                 array_push($patterns, $pattern);
-                array_push($replacements, preg_quote(mysqli_real_escape_string($parameters[$i])));
+                array_push($replacements, preg_quote(mysqli_real_escape_string($con,$parameters[$i])));
             }
             $query = preg_replace($patterns, $replacements, $sql, 1);//replace the placeholders
             
-            $result=mysqli_query($connection,$query);//perform the query
+            $result=mysqli_query($con,$query);//perform the query
             if(!$result)
             {
                 trigger_error("Error in query",E_USER_ERROR);
