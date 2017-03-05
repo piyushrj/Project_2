@@ -24,7 +24,7 @@
         }
 
         // query database for user
-        $rows = my50::query("SELECT * FROM users WHERE username = ?", $_POST["email"]);
+        $rows = my50::query("SELECT * FROM users WHERE name = ?", $_POST["email"]);
 
         // if we found user, check password
         if (count($rows) == 1)
