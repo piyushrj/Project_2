@@ -49,9 +49,7 @@
         session_destroy();
     }
 
-    /**
-     * Returns a stock by symbol (case-insensitively) else false if not found.
-     */
+    
     
     /**
      * Redirects user to location, which can be a URL or

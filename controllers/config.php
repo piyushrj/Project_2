@@ -16,9 +16,9 @@
     // requirements
     require("helpers.php");
 
-    // CS50 Library
-    require("../models/CS50.php");
-    CS50::init(__DIR__ . "/../models/config.json");
+    // my50 Library
+    require("../models/my50.php");
+    my50::init(__DIR__ . "/../config.json");
 
     // enable sessions
     session_start();
