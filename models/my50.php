@@ -61,25 +61,24 @@ class my50
             $parameters = array_slice(func_get_args(), 1);
 
             // try to connect to database
-            static $con;
-            if(!isset($conncet))
+            static $handle;
+            if (!isset($handle))
             {
                 try
                 {
-                    $con=mysqli_connect(self::$config["database"]["host"],
+                    // connect to database
+                    $handle = new PDO(
+                        "mysql:dbname=" . self::$config["database"]["name"] . ";host=" . self::$config["database"]["host"],
                         self::$config["database"]["username"],
-                        self::$config["database"]["password"],self::$config["database"]["name"]);
-                    
+                        self::$config["database"]["password"]
+                    );
                 }
                 catch (Exception $e)
                 {
-                    
+                    // trigger (big, orange) error
                     trigger_error($e->getMessage(), E_USER_ERROR);
                 }
             }
-             // ensure number of placeholders matches number of values
-            // http://stackoverflow.com/a/22273749
-            // https://eval.in/116177
             $pattern = "
                 /(?:
                 '[^'\\\\]*(?:(?:\\\\.|'')[^'\\\\]*)*'
@@ -104,26 +103,31 @@ class my50
             for ($i = 0, $n = count($parameters); $i < $n; $i++)
             {
                 array_push($patterns, $pattern);
-                array_push($replacements, preg_quote(mysqli_real_escape_string($con,$parameters[$i])));
+                array_push($replacements, preg_quote($handle->quote($parameters[$i])));
             }
-            $query = preg_replace($patterns, $replacements, $sql, 1);//replace the placeholders
-            
-            $result=mysqli_query($con,$query);//perform the query
-            if(false===$result)
+            $query = preg_replace($patterns, $replacements, $sql, 1);
+
+            // execute query
+            $statement = $handle->query($query);
+            if ($statement === false)
             {
-                trigger_error("Error in query",E_USER_ERROR);
+                trigger_error($handle->errorInfo()[2], E_USER_ERROR);
             }
-            $fieldcount=mysqli_num_fields($result);//count the number of columns in the returned array
-            //check if query was select
-            if($fieldcount>0)
+   
+            // if query was SELECT
+            // http://stackoverflow.com/a/19794473/5156190
+            if ($statement->columnCount() > 0)
             {
-                return (mysqli_fetch_all($result,MYSQLI_ASSOC));
+                // return result set's rows
+                return $statement->fetchAll(PDO::FETCH_ASSOC);
             }
-            else//if the query was INSET, DELETE or UPDATE
+
+            // if query was DELETE, INSERT, or UPDATE
+            else
             {
-                return $fieldcount;
+                // return number of rows affected
+                return $statement->rowCount();
             }
-            
 
         }
     }
