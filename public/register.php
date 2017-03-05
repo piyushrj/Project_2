@@ -18,6 +18,14 @@
         {
             apologize("You must provide your username.");
         }
+        else if (empty($_POST["email"]))
+        {
+            apologize("You must provide your email address.");
+        }
+        else if (empty($_POST["college"]))
+        {
+            apologize("You must provide your college.");
+        }
         else if (empty($_POST["password"]))
         {
             apologize("You must provide your password.");
@@ -26,10 +34,13 @@
         {
             apologize("Passwords did not match.");
         }
+        else if (empty($_POST["gender"]))
+        {
+            apologize("You must provide your gender.");
+        }
         
-        $flag=CS50::query("INSERT IGNORE INTO users (username, hash, cash) VALUES(?, ?, 10000.0000)", $_POST["username"], password_hash($_POST["password"], PASSWORD_DEFAULT));
-        //**important** change the above code according to the database created
-        if($flag==0)
+        $flag=CS50::query("INSERT IGNORE INTO users (name, hash, email, college, gender) VALUES(?, ?, ?, ?, ?)", $_POST["name"], password_hash($_POST["password"], PASSWORD_DEFAULT), $_POST["email"], $_POST["college"], $_POST["gender"]);
+         if($flag==0)
         {
             apologize("Username already exits.");
         }
