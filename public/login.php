@@ -37,7 +37,7 @@
             {
                 // remember that user's now logged in by storing user's ID in session
                 $_SESSION["id"] = $row["id"];
-                render("dashboard.php",["title" => "dashboard", "username" => $row["name"] ]);
+                require("before_dashboard.php");
             
             }
         }

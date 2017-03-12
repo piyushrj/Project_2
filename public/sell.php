@@ -21,7 +21,7 @@
              {
                 my50::query("INSERT INTO store (user_id,title,image,category,description,price,date,purpose,contact) VALUES(?,?,?,?,?,?,?,?,?)",$_SESSION["id"],$_POST["title"],$_POST["image"],$_POST["category"],$_POST["desc"],$_POST["price"],date('Y-m-d'),$_POST["choice"],$_POST["contact"]);
                 $uname=my50::query("SELECT name FROM users WHERE id=?",$_SESSION["id"]);
-                render("dashboard.php",["title" => "Dashboard", "username" => $uname[0]["name"]]);
+                require("before_dashboard.php");
 
              }
         }
