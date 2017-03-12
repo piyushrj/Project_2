@@ -24,7 +24,7 @@
         }
 
         // query database for user
-        $rows = my50::query("SELECT * FROM users WHERE name = ?", $_POST["email"]);
+        $rows = my50::query("SELECT * FROM users WHERE email = ?", $_POST["email"]);
 
         // if we found user, check password
         if (count($rows) == 1)
@@ -37,7 +37,7 @@
             {
                 // remember that user's now logged in by storing user's ID in session
                 $_SESSION["id"] = $row["id"];
-                render("dashboard.php",["title" => "dashboard"]);
+                render("dashboard.php",["title" => "dashboard", "username" => $row["name"] ]);
             
             }
         }

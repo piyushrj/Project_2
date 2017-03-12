@@ -1,6 +1,8 @@
-this will contain a welcome message
-link to sell.php via GET
-link to store.php via GET
-link to logout.php via GET
+<?php
+    echo("<h1>Welcome, {$username}!</h1><br>");
+    echo("<a href=sell.php>Sell Item</a><br>");
+    echo("<a href=store.php>Go to store</a><br>");
+    echo("<a href=logout.php>Logout</a><br>");
 
-see this link http://project2.hol.es/
+?>
+    

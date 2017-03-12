@@ -1,7 +1,7 @@
 <?php
 
     // configuration
-    require("../includes/config.php"); 
+    require("../controllers/config.php"); 
 
     // log out current user, if any
     logout();
