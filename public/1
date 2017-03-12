@@ -11,7 +11,7 @@
                  apologize("You must provide the item title of minimum character length");
              else if(empty($_POST["category"]))
                 apologize("You must give a category to your item");
-             else if(empty($_POST["desc"])||strlen($_POST["desc"])>200)
+             else if(empty($_POST["desc"])||strlen($_POST["description"])>200)
                 apologize("Please provide a valid description max 200 characters");
              else if(empty($_POST["contact"]))
                 apologize("PLease provide contact information");
@@ -19,7 +19,7 @@
                 apologize("You must choose whether you wanna donate or sell you item");
              else
              {
-                my50::query("INSERT INTO store (user_id,title,image,category,description,price,date,purpose,contact) VALUES(?,?,?,?,?,?,?,?,?)",$_SESSION["id"],$_POST["title"],$_POST["image"],$_POST["category"],$_POST["desc"],$_POST["price"],date('Y-m-d'),$_POST["choice"],$_POST["contact"]);
+                my50::query("INSERT INTO store (user_id,title,image,category,description,price,date) VALUES(?,?,?,?,?,?)",$_SESSION["id"],$_POST["title"],$_POST["image"],$_POST["category"],$_POST["desc"],$_POST["price"],date('j F Y'));
                 $uname=my50::query("SELECT name FROM users WHERE id=?",$_SESSION["id"]);
                 render("dashboard.php",["title" => "Dashboard", "username" => $uname[0]["name"]]);
 
