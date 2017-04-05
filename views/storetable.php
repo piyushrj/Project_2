@@ -28,7 +28,7 @@
     </tr>
     <?php foreach ($positions as $position): ?>
                 <tr>
-                    <td><img width=100px height=50px src=<?=($position["image"])?></td>
+                    <td><img width=150px height=100px src=<?="./uploads/".($position["image"]).".jpg"?> alt="item's image"></td>
                     <td><?=($position["title"])?></td>
                     <td><?=($position["price"])?></td>
                     <td><?=($position["college"])?></td>

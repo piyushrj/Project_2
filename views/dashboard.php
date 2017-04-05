@@ -1,8 +1,8 @@
 
-    <?=("<h1>Welcome, {$username}!</h1><br>")?>;
-    <?=("<a href=sell.php>Sell Item</a><br>")?>;
-    <?=("<a href=store.php>Go to store</a><br>")?>;
-    <?=("<a href=logout.php>Logout</a><br>")?>;
+    <?=("<h1>Welcome, {$username}!</h1><br>")?>
+    <?=("<a href=sell.php>Sell Item</a><br>")?>
+    <?=("<a href=store.php>Go to store</a><br>")?>
+    <?=("<a href=logout.php>Logout</a><br>")?>
     <div>
         <form method="post" action="delete.php">
              <table>
@@ -15,7 +15,7 @@
                 </tr>
                 <?php foreach ($positions as $position): ?>
                 <tr>
-                    <td><img width=100px height=50px src=<?=($position["image"])?></td>
+                    <td><img width=100px height=50px src=<?=("./uploads/".$position["image"].".jpg")?> alt="item's image" ></td>
                     <td><?=($position["title"])?></td>
                     <td><?=($position["description"])?></td>
                     <td><?=($position["price"])?></td>

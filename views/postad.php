@@ -1,4 +1,4 @@
-<form action="sell.php" id="adform" method="POST">
+<form enctype="multipart/form-data" action="sell.php" id="adform" method="POST">
     <select name="category">
         <option value="Category" selected disabled>Select Category</option>
         <option value="Books">Books</option>
@@ -15,8 +15,7 @@
     <input type="radio" name="choice" value="donate">I want to Donate
     <input type="radio" name="choice" value="sell">I want to Sell<br>
     <input type="text" name="price" placeholder="Your Price (In Rs.)"><br>
-    <input type="hidden" name="MAX_FILE_SIZE" value="30000000">
-    <div class="upload-div">Upload Image: <input class="upload-img" type="file" name="image"><br></div>
+    Upload Image: <input type="file" name="imageupload" id="imageupload"><br>
     
 </form>
 <button type="submit" form="adform" value="Submit">Submit</button>

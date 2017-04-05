@@ -9,8 +9,8 @@
             <th>Remove</th>
         </tr>
         <?php foreach ($positions as $position): ?>
-        <tr>
-            <td><img width=100px height=50px src=<?=($position["image"])?></td>
+        <tr> 
+        <td><img src=<?="../models/".($position["image"]).".jpg"?> width=150px height=100px alt="item's image"></td>
             <td><?=($position["title"])?></td>
             <td><?=($position["description"])?></td>
             <td><?=($position["price"])?></td>
