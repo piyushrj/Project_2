@@ -8,22 +8,22 @@
         else if($_SERVER["REQUEST_METHOD"] =="POST")
         {
             
-            $flag=false;
+            $flag=true;
             $target_dir = "./uploads/";
             $target_file = $target_dir . basename($_FILES["imageupload"]["name"]);
             $uploadOk = 1;
             $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
             if (move_uploaded_file($_FILES["imageupload"]["tmp_name"], $target_file))
             {
-                 $flag=false;
+                 $flag=true;
             } 
             else
             {
-                $flag=true;
+                $flag=false;
             }
             $d_image="default.jpg";
             $image=basename($d_image,".jpg");
-            if(!isset($_POST["imageupload"]))
+            if((!isset($_POST["imageupload"]))&&$flag)
             {   
                 
                 $image=basename( $_FILES["imageupload"]["name"],".jpg");

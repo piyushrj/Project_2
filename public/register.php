@@ -42,7 +42,7 @@
         $flag=my50::query("INSERT IGNORE INTO users (name, hash, email, college, gender) VALUES(?, ?, ?, ?, ?)", $_POST["name"], password_hash($_POST["password"], PASSWORD_DEFAULT), $_POST["email"], $_POST["college"], $_POST["gender"]);
          if($flag==0)
         {
-            apologize("Username already exits.");
+            apologize("Email already exits.");
         }
         else
         {
@@ -52,7 +52,7 @@
             $_SESSION["id"] = $id;
 
                 
-                render("dashboard.php",["title" => "dashboard"]);
+                require("before_dashboard.php");
         }
      }
  ?>
